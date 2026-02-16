@@ -12,8 +12,10 @@ in
     config = mkIf cfg.enable {
         programs.ssh = {
             enable = true;
-            addKeysToAgent = "yes";
             matchBlocks = {
+                "*" = {
+                    addKeysToAgent = "yes";
+                };
                 "github" = {
                     host = "github.com";
                     identitiesOnly = true;

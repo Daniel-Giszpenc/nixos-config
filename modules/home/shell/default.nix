@@ -120,8 +120,10 @@ in
             home.packages = [ cfg.git-pkg ];
             programs.git = {
                 enable = true;
-                userName = "Nero-Study-Hat";
-                userEmail = "nerostudyhat@gmail.com";
+                settings.user = {
+                    name = "Nero-Study-Hat";
+                    email = "nerostudyhat@gmail.com";
+                };
             };
         })
 

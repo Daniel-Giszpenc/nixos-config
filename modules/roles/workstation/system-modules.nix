@@ -59,6 +59,9 @@ in
 
             networking.hostName = cfg.hostname;
             networking.useDHCP = lib.mkDefault true;
+            networking.nameservers = [
+                "10.0.0.3"
+            ];
 
             programs.ssh.startAgent = true;
             programs.ssh.agentTimeout = "2h";
@@ -81,7 +84,7 @@ in
                 jack.enable = true;
             };
 
-            system.stateVersion = "25.05";
+            system.stateVersion = "25.11";
         })
 
         (mkIf cfg.enable (mkMerge [
@@ -100,6 +103,7 @@ in
                     user = "nero";
                     virtualbox = true;
                     kvm-qemu = false;
+                    docker = true; # rootless
                 };
             })
             ( mkIf (cfg.yubikey)

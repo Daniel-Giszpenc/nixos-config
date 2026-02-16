@@ -56,17 +56,20 @@
 	hardware.enableRedistributableFirmware = true;
 	hardware.cpu.amd.updateMicrocode = true;
 
-	hardware.graphics = {
-		enable = true;
-		enable32Bit = true;
+    environment.variables = {
+        RUSTICL_ENABLE = "radeonsi";
+    };
 
-		extraPackages = [
-			pkgs.amdvlk
-			pkgs.rocmPackages.clr.icd
-		];
-		extraPackages32 = [
-			pkgs.driversi686Linux.amdvlk
-		];
-	};
-	environment.variables.AMD_VULKAN_ICD = "RADV";
+	hardware = {
+        # amdgpu.opencl.enable = true;
+        graphics = {
+            enable = true;
+            enable32Bit = true;
+
+            extraPackages = [
+                pkgs.rocmPackages.clr.icd
+                pkgs.mesa.opencl # Enables Rusticl (OpenCL) support
+            ];
+        };
+    };
 }

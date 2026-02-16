@@ -88,7 +88,7 @@ in
                         # "zsh-autocomplete"
                 };
 
-                dotDir = ".config/zsh";
+                dotDir = "${config.xdg.configHome}/zsh";
                 initContent = ''
                     # Evaluate direnv hook
                     eval "$(direnv hook zsh)"

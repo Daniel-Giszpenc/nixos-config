@@ -13,6 +13,7 @@ in
         };
         virtualbox = mkEnableOption "Whether to setup virtualbox.";
         kvm-qemu = mkEnableOption "Whether to setup kvm-qemu.";
+        docker = mkEnableOption "Whether to setup rootless Docker.";
     };
 
     config = mkIf cfg.enable (mkMerge [
@@ -48,6 +49,13 @@ in
                         }).fd];
                     };
                 };
+            };
+        })
+        ( mkIf (cfg.docker)
+        {
+            virtualisation.docker.rootless = {
+                enable = true;
+                setSocketVariable = true;
             };
         })
     ]);

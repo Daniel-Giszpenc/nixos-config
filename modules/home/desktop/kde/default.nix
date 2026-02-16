@@ -16,6 +16,8 @@ in
             kdePackages.sddm-kcm
             wayland-utils # Wayland utilities
             wl-clipboard # Command-line copy/paste utilities for Wayland
+
+            kdePackages.krohnkite # Tiling software
         ];
 
         programs.plasma = {
@@ -39,12 +41,13 @@ in
                     "Switch One Desktop to the Right" = "Ctrl+Alt+Right";
                     "Switch One Desktop Up" = "Ctrl+Alt+Up";
                     "Switch One Desktop Down" = "Ctrl+Alt+Down";
-                    "ShowDesktopGrid" = "Meta+A";
+                    "Toggle Grid View" = "Meta+A";
                     "Window Close" = "Alt+Q";
                     "Window Operations Menu" = "Alt+R";
-                    "toggle_spiral_layout" = "Alt+S";
-                    # "next_layout" = "Ctrl+Shift+Meta+Right";
-                    # "prev_layout" = "Ctrl+Shift+Meta+Left";
+
+                    # Krohnkite
+                    "KrohnkiteNextLayout" = "Ctrl+Shift+Meta+Right";
+                    "KrohnkitePreviousLayout" = "Ctrl+Shift+Meta+Left";
                 };
             };
 
@@ -56,15 +59,31 @@ in
                     immutable = true;
                 };
                 "kwinrc"."Desktops"."Rows" = {
-                    value = 2;
-                    immutable = true;
+                        value = 2;
+                        immutable = true;
                 };
                 "kwinrc"."Windows"."RollOverDesktops" = {
-                    value = true;
+                        value = true;
+                        immutable = true;
+                };
+
+                "kwinrc"."Plugins"."krohnkiteEnabled" = {
+                        value = true;
+                        immutable = true;
+                };
+
+                "kwinrc"."krohnkite"."layoutOrder" = {
+                    value = "tile,monocle,threecolumn,spiral";
                     immutable = true;
                 };
-                "kwinrc"."Plugins"."bismuthEnabled" = {
-                    value = true;
+
+                "kwinrc"."krohnkite"."screenGap" = {
+                    value = 12;     # Outer gap: screen edge padding in pixels
+                    immutable = true;
+                };
+
+                "kwinrc"."krohnkite"."tileLayoutGap" = {
+                    value = 10;     # Inner gap: space between tiled windows in pixels
                     immutable = true;
                 };
             };

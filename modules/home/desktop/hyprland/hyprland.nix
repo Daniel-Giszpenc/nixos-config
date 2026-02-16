@@ -25,6 +25,7 @@ in
             name = "Bibata-Modern-Classic";
             size = 16;
         };
+
         gtk = {
             enable = true;
             theme = {
@@ -36,8 +37,8 @@ in
                 name = "Adwaita";
             };
             font = {
-            name = "Sans";
-            size = 11;
+                name = "Sans";
+                size = 11;
             };
         };
 

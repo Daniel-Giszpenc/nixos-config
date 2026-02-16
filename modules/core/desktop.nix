@@ -29,8 +29,10 @@ in
 			services.xserver.videoDrivers = [ "amdgpu" ];
 
 			environment.systemPackages = [
-				pkgs-stable.kdePackages.qtwayland
+				pkgs.kdePackages.qtwayland
 			];
+
+            environment.sessionVariables.QT_QPA_PLATFORMTHEME = "kde";
 		})
 
 		( mkIf (cfg.sddm)
@@ -52,18 +54,17 @@ in
 			programs.hyprland = {
 				enable = true;
 				xwayland.enable = true;
-				package = pkgs-stable.hyprland;
-				portalPackage = pkgs-stable.xdg-desktop-portal-hyprland;
+				package = pkgs.hyprland;
+				portalPackage = pkgs.xdg-desktop-portal-hyprland;
 				withUWSM = true;
 			};
 
 			services.dbus.enable = true;
 			xdg.portal = {
 				enable = true;
-				wlr.enable = true;
+				wlr.enable = false;
 				# extraPortals breaks laptop config
-				extraPortals = with pkgs-stable; [
-					xdg-desktop-portal-gtk
+				extraPortals = with pkgs; [
 					kdePackages.xdg-desktop-portal-kde
 					xdg-desktop-portal-hyprland
 				];

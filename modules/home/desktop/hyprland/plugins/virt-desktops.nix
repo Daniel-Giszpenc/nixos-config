@@ -1,4 +1,4 @@
-{ inputs, options, config, lib, pkgs, pkgs-stable, rootPath, ... }:
+{ inputs, options, config, lib, pkgs, pkgs-stable, rootPath, virtualDesktopsPatched, ... }:
 
 with lib;
 let
@@ -13,7 +13,7 @@ in
     config = mkIf cfg.enable {
         wayland.windowManager.hyprland = {
             plugins = [
-                inputs.hyprland-virtual-desktops.packages.${pkgs-stable.system}.virtual-desktops
+                inputs.hyprland-virtual-desktops.packages.${pkgs.system}.virtual-desktops
             ];
 
             # hyprlang config

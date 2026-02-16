@@ -13,7 +13,7 @@
 	home-modules.desktop = {
 		kde.enable = true;
 		hyprland = {
-			enable = true;
+			enable = false; # hyprland-virtual-desktops currently broken due to header inclusion failure 1-19-26
 			hyprlock = {
 				enable = true;
 				wallpaper = "/home/nero/Pictures/Wallpapers/bench.jpg";
@@ -45,11 +45,11 @@
 	};
 
 	home.file.".local/lib/wireshark/extcap/cshargextcap" = {
-		source = "${rootPath}/pkgs/wireshark-plugins/cshargextcap";
+		source = "${rootPath}/pkgs/external/wireshark-plugins/cshargextcap";
 		executable = true;
 	};
 	home.file.".local/lib/wireshark/plugins/ts-dissector.lua" = {
-		source = "${rootPath}/pkgs/wireshark-plugins/ts-dissector.lua";
+		source = "${rootPath}/pkgs/external/wireshark-plugins/ts-dissector.lua";
 	};
 
 	home.packages = [

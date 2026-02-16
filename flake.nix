@@ -9,8 +9,8 @@
         };
 
         nixpkgs.url = "nixpkgs/nixos-unstable";
-        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-25.05";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -26,16 +26,20 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        hyprland-virtual-desktops = {
+            url = "github:levnikmyskin/hyprland-virtual-desktops";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         plasma-manager = {
             url = "github:pjones/plasma-manager";
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
 
-        hyprland-virtual-desktops = {
-            url = "github:levnikmyskin/hyprland-virtual-desktops";
-            inputs.nixpkgs.follows = "nixpkgs-stable"; # pkg of hyprland I'm using
-        };
+
+        affinity-nix.url = "github:mrshmllow/affinity-nix";
+
         # hyprkool = {
         #     url = "github:thrombe/hyprkool/0.7.1";
         #     inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -57,6 +61,8 @@
         home-manager,
         nixos-generators,
         sops-nix,
+        affinity-nix,
+        hyprland-virtual-desktops,
         ... 
     }@inputs:
     let
@@ -117,7 +123,7 @@
 
                 modules = [
                     ./hosts/stardom/users/nero/home.nix
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
+                    inputs.plasma-manager.homeModules.plasma-manager
                 ];
             };
             alaric = home-manager.lib.homeManagerConfiguration {
@@ -133,7 +139,7 @@
 
                 modules = [
                     ./hosts/starfief/home.nix
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
+                    inputs.plasma-manager.homeModules.plasma-manager
                 ];
             };
             bo = home-manager.lib.homeManagerConfiguration {
@@ -149,7 +155,7 @@
 
                 modules = [
                     ./hosts/stardom/users/bo/home.nix
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
+                    inputs.plasma-manager.homeModules.plasma-manager
                 ];
             };
         };

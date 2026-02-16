@@ -1,9 +1,9 @@
-{ options, config, lib, pkgs, ... }:
+{ inputs, options, config, lib, pkgs, ... }:
 
 with lib;
 let
     cfg = config.home-modules.desktop.apps.creative;
-    pureref-s = pkgs.callPackage (import ../../../../../pkgs/pureref/pureref.nix) {};
+    pureref-s = pkgs.callPackage (import ../../../../../pkgs/external/pureref/pureref.nix) {};
 in
 {
     # if something grows in complexity and/or size then move it from this file to its own file to import
@@ -27,10 +27,17 @@ in
             type = package;
             default = pkgs.aseprite;
         };
-        davinci-resolve-enable = mkEnableOption "Enable davinci-resolve.";
-        davinci-resolve-pkg = mkOption {
+
+        affinity-enable = mkEnableOption "Enable Affinity.";
+        affinity-pkg = mkOption {
             type = package;
-            default = pkgs.davinci-resolve;
+            default = inputs.affinity-nix.packages.x86_64-linux.v3;
+        };
+
+        figma-enable = mkEnableOption "Enable figma-linux.";
+        figma-pkg = mkOption {
+            type = package;
+            default = pkgs.figma-linux;
         };
 
         vital-enable = mkEnableOption "Enable vital, a digital synth tool.";
@@ -83,9 +90,13 @@ in
         {
             home.packages = [ cfg.aseprite-pkg ];
         })
-        ( mkIf (cfg.davinci-resolve-enable)
+        ( mkIf (cfg.affinity-enable)
         {
-            home.packages = [ cfg.davinci-resolve-pkg ];
+            home.packages = [ cfg.affinity-pkg ];
+        })
+        ( mkIf (cfg.figma-enable)
+        {
+            home.packages = [ cfg.figma-pkg ];
         })
         ( mkIf (cfg.vital-enable)
         {

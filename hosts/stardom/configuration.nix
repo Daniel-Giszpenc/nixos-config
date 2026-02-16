@@ -73,6 +73,9 @@
 		pkgs.yabridge
 		pkgs.yabridgectl
 		pkgs.gamemode
+
+        # pkgs.davinci-resolve # to test if works here in sys pkgs in future
+        pkgs.audacity
 	];
 
 	users.groups."gamemode".members = [ "nero" ];

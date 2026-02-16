@@ -52,7 +52,7 @@ in
 
             nixpkgs = {
                 config.allowUnfree = true;
-                config.permittedInsecurePackages = [ "electron-25.9.0" ];
+                # config.permittedInsecurePackages = [ "electron-25.9.0" ];
                 #TODO: try "electron_30-bin"
             };
 

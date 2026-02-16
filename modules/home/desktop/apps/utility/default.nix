@@ -51,6 +51,12 @@ in
             type = package;
             default = pkgs.usbimager;
         };
+
+        picocrypt-enable = mkEnableOption "Enable picocrypt.";
+        picocrypt-pkg = mkOption {
+            type = package;
+            default = pkgs.picocrypt;
+        };
     };
 
     config = mkMerge [
@@ -74,5 +80,8 @@ in
 
         ( mkIf (cfg.usbimager-enable)
         { home.packages = [ cfg.usbimager-pkg ]; })
+
+        ( mkIf (cfg.picocrypt-enable)
+        { home.packages = [ cfg.picocrypt-pkg ]; })
     ];
 }

@@ -46,9 +46,9 @@ in
 
         programs.rofi = {
             enable = true;
-            package = pkgs.rofi-wayland;
-            plugins = [ 
-                pkgs.rofi-emoji-wayland
+            package = pkgs.rofi;
+            plugins = [
+                pkgs.rofi-emoji
             ];
             font = "cascadia-code";
             location = "center";

@@ -22,9 +22,13 @@ in
         godot4-enable = mkEnableOption "Enable godot4.";
         godot4-pkg = mkOption {
             type = package;
-            default = pkgs.godot_4;
+            default = pkgs.godotPackages_4_5.godot;
         };
         godot4-mono-enable = mkEnableOption "Enable godot4-mono.";
+        godot4-mono-pkg = mkOption {
+            type = package;
+            default = pkgs.godot-mono;
+        };
     };
 
     config = mkMerge [
@@ -38,6 +42,6 @@ in
         { home.packages = [ cfg.godot4-pkg ]; })
 
         ( mkIf (cfg.godot4-mono-enable)
-        { home.packages = [ godot4-mono ]; })
+        { home.packages = [ cfg.godot4-mono-pkg ]; })
     ];
 }

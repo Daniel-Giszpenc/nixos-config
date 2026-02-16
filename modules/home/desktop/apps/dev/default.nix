@@ -36,6 +36,12 @@ in
             type = package;
             default = pkgs-stable.renpy;
         };
+
+        ciscoPacketTracer-enable = mkEnableOption "Enable ciscoPacketTracer networking tool.";
+        ciscoPacketTracer-pkg = mkOption {
+            type = package;
+            default = pkgs-stable.ciscoPacketTracer8;
+        };
     };
 
     config = mkMerge [
@@ -86,6 +92,11 @@ in
         ( mkIf (cfg.renpy-enable)
         {
             home.packages = [ cfg.renpy-pkg ];
+        })
+
+        ( mkIf (cfg.ciscoPacketTracer-enable)
+        {
+            home.packages = [ cfg.ciscoPacketTracer-pkg ];
         })
     ];
 }

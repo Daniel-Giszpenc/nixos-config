@@ -60,23 +60,23 @@ in
 
             nixpkgs = {
                 config.allowUnfree = true;
-                config.permittedInsecurePackages = [ "electron-25.9.0" ];
+                # config.permittedInsecurePackages = [ "electron-25.9.0" ];
             };
 
             home.packages = with pkgs; [
                 cascadia-code
                 source-code-pro
                 noto-fonts
-                noto-fonts-extra
                 noto-fonts-cjk-sans
-                noto-fonts-emoji
+                noto-fonts-color-emoji
                 font-awesome
+                google-fonts
             ];
 
             fonts.fontconfig.defaultFonts.emoji = ["Noto Color Emoji"];
 
             programs.home-manager.enable = true;
-            home.stateVersion = "25.05";
+            home.stateVersion = "25.11";
         })
 
         (mkIf cfg.enable (mkMerge [
@@ -125,7 +125,9 @@ in
                     krita-enable = true;
                     aseprite-enable = true;
                     aseprite-pkg = pkgs-stable.aseprite; # unstable broken currently
-                    davinci-resolve-enable = false;
+                    # davinci-resolve-enable = false; # unstable & stable not working 12-21-25
+                    affinity-enable = true;
+                    figma-enable = true;
                     vital-enable = true;
                     pureref-enable = true;
                     remnote-enable = true;
@@ -139,25 +141,29 @@ in
             {
                 home-modules.desktop.apps.dev = {
                     vscode-enable = true;
+                    vscode-pkg = pkgs-stable.vscode;
                     neovim-enable = false;
                     cool-retro-term-enable = true;
                     ghostty-enable = true;
                     githup-desktop-enable = true;
-                    godot4-mono-enable = false; # currently doesn't work
-                    renpy-enable = true;
+                    godot4-enable = true;
+                    godot4-mono-enable = true;
+                    renpy-enable = false; # uses insecure python package (11-22-25)
+                    ciscoPacketTracer-enable = false;
                 };
             })
             ( mkIf (cfg.default-utility-apps)
             {
                 home-modules.desktop.apps.utility = {
-                    protonvpn-enable = true;
-                    protonvpn-pkg = pkgs-stable.protonvpn-cli_2; # latest currently doesn't work
+                    protonvpn-enable = false;
+                    protonvpn-pkg = pkgs-stable.protonvpn-gui; # latest currently doesn't work
                     gparted-enable = false;
                     simplescreenrecorder-enable = true;
                     yt-dlp-enable = true;
                     yubico-authenticator-enable = true;
                     ffmpeg-enable = true;
                     usbimager-enable = true;
+                    picocrypt-enable = true;
                 };
             })
             ( mkIf (cfg.default-gaming)

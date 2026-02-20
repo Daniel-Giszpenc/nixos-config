@@ -15,7 +15,7 @@ in
             adwaita-icon-theme
 
             wlr-randr
-            xorg.xrandr    # for XWayland windows
+            xrandr    # for XWayland windows
             nwg-look
 
             swww           # wallpaper daemon

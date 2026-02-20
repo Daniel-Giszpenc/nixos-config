@@ -30,12 +30,7 @@ in
             type = package;
             default = pkgs.vesktop;
         };
-        morgen-enable = mkEnableOption "Enable morgen calendar.";
-        morgen-pkg = mkOption {
-            type = package;
-            default = pkgs.morgen;
-        };
-        zoom-enable = mkEnableOption "Enable morgen calendar.";
+        zoom-enable = mkEnableOption "Enable zoom.";
         zoom-pkg = mkOption {
             type = package;
             default = pkgs.zoom-us;
@@ -58,10 +53,6 @@ in
         ( mkIf (cfg.vesktop-enable)
         {
             home.packages = [ cfg.vesktop-pkg ];
-        })
-        ( mkIf (cfg.morgen-enable)
-        {
-            home.packages = [ cfg.morgen-pkg ];
         })
         ( mkIf (cfg.zoom-enable)
         {

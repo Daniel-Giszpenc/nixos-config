@@ -8,5 +8,6 @@
         ./sops.nix
         ./tailscale.nix
         ./wireshark.nix
+        ./signal.nix
     ];
 }

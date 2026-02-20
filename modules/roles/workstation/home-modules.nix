@@ -112,7 +112,6 @@ in
                     mullvad-browser-enable = false;
                     dolphin-enable = true;
                     vesktop-enable = true;
-                    morgen-enable = true;
                     zoom-enable = true;
                 };
             })
@@ -146,7 +145,6 @@ in
                     cool-retro-term-enable = true;
                     ghostty-enable = true;
                     githup-desktop-enable = true;
-                    godot4-enable = true;
                     godot4-mono-enable = true;
                     renpy-enable = false; # uses insecure python package (11-22-25)
                     ciscoPacketTracer-enable = false;

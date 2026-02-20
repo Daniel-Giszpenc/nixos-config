@@ -43,6 +43,11 @@ in
             default = true;
             description = "Setup Wireshark with associated packages and config.";
         };
+        signal = mkOption {
+            type = bool;
+            default = true;
+            description = "Setup Signal messenger app with associated packages and config.";
+        };
     };
 
     config = mkMerge [
@@ -127,6 +132,12 @@ in
             ( mkIf (cfg.wireshark)
             {
                 system-modules.wireshark = {
+                    enable = true;
+                };
+            })
+            ( mkIf (cfg.signal)
+            {
+                system-modules.signal = {
                     enable = true;
                 };
             })

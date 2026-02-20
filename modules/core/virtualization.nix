@@ -1,4 +1,4 @@
-{ inputs, options, config, lib, pkgs, pkgs-old, rootPath, ... }:
+{ inputs, options, config, lib, pkgs, pkgs-stable, pkgs-old, rootPath, ... }:
 
 with lib;
 let
@@ -26,7 +26,7 @@ in
         ( mkIf (cfg.virtualbox)
         {
             virtualisation.virtualbox.host.enable = true;
-            virtualisation.virtualbox.host.package = pkgs.virtualbox;
+            virtualisation.virtualbox.host.package = pkgs-stable.virtualbox;
             users.extraGroups.vboxusers.members = [ cfg.user ];
             virtualisation.virtualbox.host.enableExtensionPack = true;
             virtualisation.virtualbox.guest.enable = true;

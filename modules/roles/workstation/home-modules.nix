@@ -89,19 +89,21 @@ in
                     ssh-client.enable = true;
                     direnv-enable = true;
                     git-enable = true;
+                    gitui-enable = true;
                     tmux-enable = true;
                     htop-enable = true;
                     curl-enable = true;
                     wget-enable = true;
                     ncdu-enable = true;
                     file-enable = true;
-                    neofetch-enable = true;
+                    fastfetch-enable = true;
                     tldr-enable = true;
                     traceroute-enable = true;
                     dig-enable = true;
                     parallel-enable = true;
                     tree-enable = true;
                     bat-enable = true;
+                    eza-enable = true;
                 };
             })
 
@@ -113,6 +115,7 @@ in
                     dolphin-enable = true;
                     vesktop-enable = true;
                     zoom-enable = true;
+                    slack-enable = true;
                 };
             })
 
@@ -141,10 +144,11 @@ in
                 home-modules.desktop.apps.dev = {
                     vscode-enable = true;
                     vscode-pkg = pkgs-stable.vscode;
-                    neovim-enable = false;
+                    neovim-enable = true;
                     cool-retro-term-enable = true;
                     ghostty-enable = true;
                     githup-desktop-enable = true;
+                    githup-desktop-pkg = pkgs-stable.github-desktop;
                     godot4-mono-enable = true;
                     renpy-enable = false; # uses insecure python package (11-22-25)
                     ciscoPacketTracer-enable = false;
@@ -153,11 +157,11 @@ in
             ( mkIf (cfg.default-utility-apps)
             {
                 home-modules.desktop.apps.utility = {
-                    protonvpn-enable = false;
-                    protonvpn-pkg = pkgs-stable.protonvpn-gui; # latest currently doesn't work
+                    protonvpn-enable = true;
+                    # protonvpn-pkg = pkgs-stable.protonvpn; # latest currently doesn't work
                     gparted-enable = false;
                     simplescreenrecorder-enable = true;
-                    yt-dlp-enable = true;
+                    yt-dlp-enable = false;
                     yubico-authenticator-enable = true;
                     ffmpeg-enable = true;
                     usbimager-enable = true;

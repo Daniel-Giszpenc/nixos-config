@@ -25,6 +25,12 @@ in
             default = pkgs.git;
         };
 
+        gitui-enable = mkEnableOption "Enable gitui.";
+        gitui-pkg = mkOption {
+            type = package;
+            default = pkgs.gitui;
+        };
+
         tmux-enable = mkEnableOption "Enable tmux.";
         tmux-pkg = mkOption {
             type = package;
@@ -61,10 +67,10 @@ in
             default = pkgs.file;
         };
 
-        neofetch-enable = mkEnableOption "Enable neofetch.";
-        neofetch-pkg = mkOption {
+        fastfetch-enable = mkEnableOption "Enable neofetch.";
+        fastfetch-pkg = mkOption {
             type = package;
-            default = pkgs.neofetch;
+            default = pkgs.fastfetch;
         };
 
         tldr-enable = mkEnableOption "Enable tldr.";
@@ -102,6 +108,12 @@ in
             type = package;
             default = pkgs.bat;
         };
+
+        eza-enable = mkEnableOption "Install eza cli utility.";
+        eza-pkg = mkOption {
+            type = package;
+            default = pkgs.eza;
+        };
     };
 
     config = mkMerge [
@@ -117,13 +129,22 @@ in
 
         ( mkIf (cfg.git-enable)
         {
-            home.packages = [ cfg.git-pkg ];
             programs.git = {
                 enable = true;
+                package = cfg.git-pkg;
                 settings.user = {
-                    name = "Nero-Study-Hat";
-                    email = "nerostudyhat@gmail.com";
+                    name = "NeoStudyHat";
+                    email = "danielgiszpenc@gmail.com";
                 };
+            };
+        })
+
+        ( mkIf (cfg.gitui-enable)
+        {
+            programs.gitui = {
+                enable = true;
+                package = cfg.gitui-pkg;
+                # theme = {};
             };
         })
 
@@ -155,8 +176,8 @@ in
         ( mkIf (cfg.file-enable)
         { home.packages = [ cfg.file-pkg ]; })
 
-        ( mkIf (cfg.neofetch-enable)
-        { home.packages = [ cfg.neofetch-pkg ]; })
+        ( mkIf (cfg.fastfetch-enable)
+        { home.packages = [ cfg.fastfetch-pkg ]; })
 
         ( mkIf (cfg.tldr-enable)
         { home.packages = [ cfg.tldr-pkg ]; })
@@ -172,5 +193,8 @@ in
 
         ( mkIf (cfg.bat-enable)
         { home.packages = [ cfg.bat-pkg ]; })
+
+        ( mkIf (cfg.eza-enable)
+        { home.packages = [ cfg.eza-pkg ]; })
     ];
 }

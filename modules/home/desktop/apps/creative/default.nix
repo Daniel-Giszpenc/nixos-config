@@ -29,10 +29,6 @@ in
         };
 
         affinity-enable = mkEnableOption "Enable Affinity.";
-        affinity-pkg = mkOption {
-            type = package;
-            default = inputs.affinity-nix.packages.x86_64-linux.v3;
-        };
 
         figma-enable = mkEnableOption "Enable figma-linux.";
         figma-pkg = mkOption {
@@ -96,7 +92,12 @@ in
         })
         ( mkIf (cfg.affinity-enable)
         {
-            home.packages = [ cfg.affinity-pkg ];
+            nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ];
+            home.packages = [ pkgs.affinity-v3 ];
+            # ({ pkgs, ... }: {
+            #     nixpkgs.overlays = [ inputs.affinity-nix.overlays.default ]
+            #     home.packages = [ pkgs.affinity-v3 ];
+            # })
         })
         ( mkIf (cfg.figma-enable)
         {

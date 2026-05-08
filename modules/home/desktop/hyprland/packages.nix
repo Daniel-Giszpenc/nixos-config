@@ -18,7 +18,7 @@ in
             xrandr    # for XWayland windows
             nwg-look
 
-            swww           # wallpaper daemon
+            awww           # wallpaper daemon
             hyprcursor
 
             

@@ -13,7 +13,7 @@ in
         protonvpn-enable = mkEnableOption "Enable direnv.";
         protonvpn-pkg = mkOption {
             type = package;
-            default = pkgs.protonvpn-cli_2;
+            default = pkgs.proton-vpn; # cli option: proton-vpn-cli
         };
 
         gparted-enable = mkEnableOption "Enable gparted.";

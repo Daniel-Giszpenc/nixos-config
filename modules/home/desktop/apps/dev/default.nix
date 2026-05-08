@@ -8,6 +8,7 @@ in
     imports = [
         ./godot.nix
         ./ghostty.nix
+        ./neovim.nix
     ];
 
     options.home-modules.desktop.apps.dev = with types; {
@@ -15,11 +16,6 @@ in
         vscode-pkg = mkOption {
             type = package;
             default = pkgs.vscode;
-        };
-        neovim-enable = mkEnableOption "Enable neovim.";
-        neovim-pkg = mkOption {
-            type = package;
-            default = pkgs.neovim;
         };
         cool-retro-term-enable = mkEnableOption "Enable cool-retro-term.";
         cool-retro-term-pkg = mkOption {
@@ -76,10 +72,6 @@ in
                 package = cfg.vscode-pkg;
                 mutableExtensionsDir = true;
             };
-        })
-        ( mkIf (cfg.neovim-enable)
-        {
-            ## config
         })
         ( mkIf (cfg.cool-retro-term-enable)
         {

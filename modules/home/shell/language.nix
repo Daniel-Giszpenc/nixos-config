@@ -70,6 +70,7 @@ in
 
                 shellAliases = {
                     cl = "clear";
+                    ls = "eza";
                     res = "result/activate && rm -r result";
                     flake-update = "cd $FLAKE && nix flake update";
                     stardom = "sudo nixos-rebuild switch --flake $FLAKE#stardom --no-update-lock-file";

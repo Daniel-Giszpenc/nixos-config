@@ -16,6 +16,8 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nvf.url = "github:notashelf/nvf";
+
         nixos-generators = {
             url = "github:nix-community/nixos-generators";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -124,6 +126,11 @@
                 modules = [
                     ./hosts/stardom/users/nero/home.nix
                     inputs.plasma-manager.homeModules.plasma-manager
+                    inputs.nvf.homeManagerModules.default
+                    # ({ pkgs, ... }: {
+                    #     nixpkgs.overlays = [ affinity-nix.overlays.default ];
+                    #     home.packages = [ pkgs.affinity-v3 ];
+                    # })
                 ];
             };
             alaric = home-manager.lib.homeManagerConfiguration {

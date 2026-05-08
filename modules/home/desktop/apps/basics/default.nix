@@ -35,6 +35,11 @@ in
             type = package;
             default = pkgs.zoom-us;
         };
+        slack-enable = mkEnableOption "Enable slack desktop client.";
+        slack-pkg = mkOption {
+            type = package;
+            default = pkgs.slack;
+        };
     };
 
     config = mkMerge [
@@ -57,6 +62,19 @@ in
         ( mkIf (cfg.zoom-enable)
         {
             home.packages = [ cfg.zoom-pkg ];
+        })
+        ( mkIf (cfg.slack-enable)
+        {
+            home.packages = [ cfg.slack-pkg ];
+            # below is needed until associated issue and PR are resolved
+            # https://github.com/NixOS/nixpkgs/issues/301893
+            # https://github.com/NixOS/nixpkgs/pull/494847
+            xdg.mimeApps = {
+                enable = true;
+                defaultApplications = {
+                    "x-scheme-handler/slack" = [ "slack.desktop" ];
+                };
+            };
         })
     ];
 }

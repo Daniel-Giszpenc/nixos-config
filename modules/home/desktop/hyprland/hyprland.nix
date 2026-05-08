@@ -195,7 +195,7 @@ in
                 ];
 
                 exec-once = [
-                    "waybar & swww"
+                    "waybar & awww"
                     "hypridle"
                     "sleep 3 && uwsm app -- copyq --start-server"
 

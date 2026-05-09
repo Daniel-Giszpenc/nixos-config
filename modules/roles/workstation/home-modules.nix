@@ -152,6 +152,7 @@ in
                     godot4-mono-enable = true;
                     renpy-enable = false; # uses insecure python package (11-22-25)
                     ciscoPacketTracer-enable = false;
+                    pi-coding-agent-enable = true;
                 };
             })
             ( mkIf (cfg.default-utility-apps)

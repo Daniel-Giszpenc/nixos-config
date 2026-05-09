@@ -38,6 +38,12 @@ in
             type = package;
             default = pkgs-stable.ciscoPacketTracer8;
         };
+
+        pi-coding-agent-enable = mkEnableOption "Enable pi-coding-agent tool.";
+        pi-coding-agent-pkg = mkOption {
+            type = package;
+            default = pkgs.pi-coding-agent; # not on stable yet
+        };
     };
 
     config = mkMerge [
@@ -89,6 +95,11 @@ in
         ( mkIf (cfg.ciscoPacketTracer-enable)
         {
             home.packages = [ cfg.ciscoPacketTracer-pkg ];
+        })
+
+        ( mkIf (cfg.pi-coding-agent-enable)
+        {
+            home.packages = [ cfg.pi-coding-agent-pkg ];
         })
     ];
 }
